@@ -6,7 +6,7 @@ flaskApp = Flask(__name__)
 flaskApp.config["DEBUG"] = True
 
 
-@flaskAp.route("/")
+@flaskApp.route("/")
 def get_home():
     return "<h1>Home</h1>"
 
