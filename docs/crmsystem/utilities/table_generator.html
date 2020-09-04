@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>table_generator.py</title>
+  <link rel="stylesheet" href="..\..\pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>table_generator.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">prettytable</span> <span class="kn">import</span> <span class="n">PrettyTable</span>
+<span class="kn">from</span> <span class="nn">crmsystem.utilities</span> <span class="kn">import</span> <span class="n">ErrorProvider</span>
+
+<span class="n">ERRORS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;errorKey&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;errorCode&quot;</span><span class="p">:</span> <span class="s2">&quot;CUSTTABGEN101&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;errorMessage&quot;</span><span class="p">:</span> <span class="s2">&quot;Invalid Customer(s) Specified&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;errorKey&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;errorCode&quot;</span><span class="p">:</span> <span class="s2">&quot;ORDTABGEN101&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;errorMessage&quot;</span><span class="p">:</span> <span class="s2">&quot;Invalid Order(s) Specified&quot;</span><span class="p">},</span>
+<span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">PrettyTableGenerator</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">get_customer_table</span><span class="p">(</span><span class="n">customers</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">customers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ErrorProvider</span><span class="o">.</span><span class="n">get_error</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">table</span> <span class="o">=</span> <span class="n">PrettyTable</span><span class="p">([</span><span class="s2">&quot;Id&quot;</span><span class="p">,</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Address&quot;</span><span class="p">,</span> <span class="s2">&quot;Credit&quot;</span><span class="p">,</span> <span class="s2">&quot;Status&quot;</span><span class="p">])</span>
+
+        <span class="k">for</span> <span class="n">customer</span> <span class="ow">in</span> <span class="n">customers</span><span class="p">:</span>
+            <span class="n">table</span><span class="o">.</span><span class="n">add_row</span><span class="p">([</span><span class="n">customer</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">customer</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                           <span class="n">customer</span><span class="o">.</span><span class="n">address</span><span class="p">,</span> <span class="n">customer</span><span class="o">.</span><span class="n">credit</span><span class="p">,</span> <span class="n">customer</span><span class="o">.</span><span class="n">status</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">table</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">get_order_table</span><span class="p">(</span><span class="n">orders</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">orders</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ErrorProvider</span><span class="o">.</span><span class="n">get_error</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="n">table</span> <span class="o">=</span> <span class="n">PrettyTable</span><span class="p">(</span>
+            <span class="p">[</span><span class="s2">&quot;Order #&quot;</span><span class="p">,</span> <span class="s2">&quot;Order Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Customer&quot;</span><span class="p">,</span> <span class="s2">&quot;Address&quot;</span><span class="p">,</span> <span class="s2">&quot;Amount&quot;</span><span class="p">])</span>
+
+        <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="n">orders</span><span class="p">:</span>
+            <span class="n">table</span><span class="o">.</span><span class="n">add_row</span><span class="p">([</span><span class="n">order</span><span class="o">.</span><span class="n">orderId</span><span class="p">,</span> <span class="n">order</span><span class="o">.</span><span class="n">orderDate</span><span class="p">,</span>
+                           <span class="n">order</span><span class="o">.</span><span class="n">customer</span><span class="p">,</span> <span class="n">order</span><span class="o">.</span><span class="n">billingAddress</span><span class="p">,</span> <span class="n">order</span><span class="o">.</span><span class="n">amount</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">table</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

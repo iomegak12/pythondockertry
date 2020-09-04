@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>__init__.py</title>
+  <link rel="stylesheet" href="..\pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>__init__.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.config</span> <span class="kn">import</span> <span class="n">GlobalConfiguration</span>
+<span class="kn">from</span> <span class="nn">.controllers</span> <span class="kn">import</span> <span class="n">DataController</span>
+<span class="kn">from</span> <span class="nn">.utilities</span> <span class="kn">import</span> <span class="n">ErrorProvider</span><span class="p">,</span> <span class="n">CustomerEncoder</span><span class="p">,</span> <span class="n">OrderEncoder</span><span class="p">,</span> <span class="n">PrettyTableGenerator</span>
+<span class="kn">from</span> <span class="nn">.services</span> <span class="kn">import</span> <span class="n">CustomerService</span><span class="p">,</span> <span class="n">OrderService</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Customer</span><span class="p">,</span> <span class="n">Order</span><span class="p">,</span> <span class="n">CRMSystemError</span>
+<span class="kn">from</span> <span class="nn">.decorators</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">.routing</span> <span class="kn">import</span> <span class="n">CustomerRouteHandler</span>
+<span class="kn">from</span> <span class="nn">.hosting</span> <span class="kn">import</span> <span class="n">app</span> <span class="k">as</span> <span class="n">CRMSystemHost</span>
+<span class="kn">from</span> <span class="nn">.app</span> <span class="kn">import</span> <span class="n">flaskApp</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

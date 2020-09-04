@@ -1,0 +1,39 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Flask",
+            "type": "python",
+            "request": "launch",
+            "module": "flask",
+            "env": {
+                "FLASK_APP": "crmsystem/app/app.py",
+                "FLASK_ENV": "development",
+                "FLASK_DEBUG": "0",
+                "CUSTOMER_SERVICE_URL": "https://5f5072742b5a260016e8b96d.mockapi.io/customerprofiles",
+                "MONGO_SERVER": "localhost",
+                "MONGO_PORT": "27017",
+                "MONGO_DB": "crmsystemdb"
+            },
+            "args": [
+                "run",
+                "--no-debugger",
+                "--no-reload"
+            ],
+            "jinja": true
+        },
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "env": {
+                "CUSTOMER_SERVICE_URL": "https://5f5072742b5a260016e8b96d.mockapi.io/customerprofiles",
+                "MONGO_SERVER": "localhost",
+                "MONGO_PORT": "27017",
+                "MONGO_DB": "crmsystemdb"
+            }
+        }
+    ]
+}

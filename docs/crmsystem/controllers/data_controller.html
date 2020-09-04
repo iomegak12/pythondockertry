@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>data_controller.py</title>
+  <link rel="stylesheet" href="..\..\pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>data_controller.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">crmsystem.decorators</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">injector</span> <span class="kn">import</span> <span class="n">inject</span>
+<span class="kn">from</span> <span class="nn">crmsystem.services</span> <span class="kn">import</span> <span class="n">CustomerService</span><span class="p">,</span> <span class="n">OrderService</span>
+<span class="kn">from</span> <span class="nn">crmsystem.utilities</span> <span class="kn">import</span> <span class="n">ErrorProvider</span>
+
+<span class="n">ERRORS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;errorId&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;errorKey&quot;</span><span class="p">:</span> <span class="s2">&quot;DATCONT101&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;errorMessage&quot;</span><span class="p">:</span> <span class="s2">&quot;Invalid Controller Callback Specified!&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;errorId&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;errorKey&quot;</span><span class="p">:</span> <span class="s2">&quot;DATCONT102&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;errorMessage&quot;</span><span class="p">:</span> <span class="s2">&quot;Invalid Customer Service Specified!&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;errorId&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;errorKey&quot;</span><span class="p">:</span> <span class="s2">&quot;DATCONT103&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;errorMessage&quot;</span><span class="p">:</span> <span class="s2">&quot;Invalid Order Service Specified!&quot;</span><span class="p">},</span>
+
+<span class="p">]</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">class</span> <span class="nc">DataController</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="nd">@inject</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">customerService</span><span class="p">:</span> <span class="n">CustomerService</span><span class="p">,</span> <span class="n">orderService</span><span class="p">:</span> <span class="n">OrderService</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">customerService</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ErrorProvider</span><span class="o">.</span><span class="n">get_error</span><span class="p">(</span><span class="n">ERRORS</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">customerService</span> <span class="o">=</span> <span class="n">customerService</span>
+
+        <span class="k">if</span> <span class="n">orderService</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ErrorProvider</span><span class="o">.</span><span class="n">get_error</span><span class="p">(</span><span class="n">ERRORS</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">orderService</span> <span class="o">=</span> <span class="n">orderService</span>
+
+    <span class="nd">@Logger</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">post</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">callback</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ErrorProvider</span><span class="o">.</span><span class="n">get_error</span><span class="p">(</span><span class="n">ERRORS</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">customerService</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orderService</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">customerService</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orderService</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+        <span class="n">callback</span><span class="p">()</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

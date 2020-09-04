@@ -1,0 +1,8 @@
+requests
+injector
+prettytable
+pymongo
+wheel
+twine
+Flask
+pytest

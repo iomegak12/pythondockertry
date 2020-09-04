@@ -1,0 +1,1 @@
+from crmsystem.config.global_configuration import GlobalConfiguration
