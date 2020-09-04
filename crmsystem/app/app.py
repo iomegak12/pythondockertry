@@ -6,6 +6,11 @@ flaskApp = Flask(__name__)
 flaskApp.config["DEBUG"] = True
 
 
+@flaskAp.route("/")
+def get_home():
+    return "<h1>Home</h1>"
+
+
 @flaskApp.route("/api/v1/customers/", methods=["GET"])
 def get_customers():
     customers = []
@@ -29,4 +34,5 @@ def get_customers_v2():
     return json.dumps(customers)
 
 
-flaskApp.run()
+if __name__ == "__main__":
+    flaskApp.run()
